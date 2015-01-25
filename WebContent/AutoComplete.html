@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+  #txtSearch{width:300px}
+  #div1{border:1px solid green;width:300px;display:none}
+  ul{list-style-type:none;padding:5px 5px;margin:0px}
+  .s1{background-color:yellow;
+      cursor:pointer;
+      text-decoration:underline}
+  .s2{background-color:transparent;}
+</style>
+
+</head>
+<body>
+<form name="myData" action="First.jsp" method="get">
+<input type="text" id="txtSearch" name="keyword" autocomplete="off">
+<input type="submit" value="送出">
+<div id="div1"></div>
+</form>
+
+
+
+
+<script>
+  //將資料存到陣列中
+  var datas = ["aaaaa","bbbbb","ccccc","ddddd","eeeee","fffff","ggggg","hhhhh","iiiii","jjjjj"];
+
+
+  var txt = document.getElementById("txtSearch");
+  txt.addEventListener("keyup",getData,false);
+  var show = document.getElementById("div1");
+
+  function getData(){
+     show.style.display="block";
+     if(show.childNodes.length > 0){
+    	 show.removeChild(show.childNodes[0]);
+     }
+     var eleUl = document.createElement("ul");
+     for(var j=0;j<datas.length;j++){
+  	    var txtLi = document.createTextNode(datas[j]);
+  	    var eleLi = document.createElement("li");
+  	    eleLi.appendChild(txtLi);
+  	    eleLi.addEventListener("mouseover",function(){this.className='s1'},false)
+  	    eleLi.addEventListener("mouseout",function(){this.className='s2'},false)
+  	    eleLi.addEventListener("click",function(){
+  	    	 document.myData.keyword.value = this.firstChild.nodeValue;  		  	  
+  		  	 show.style.display="none";
+  	    },false)
+  	    eleUl.appendChild(eleLi);
+     }
+     show.appendChild(eleUl);
+  }
+</script>
+</body>
+
+</html>

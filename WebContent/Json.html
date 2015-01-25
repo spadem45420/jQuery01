@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+  //array
+  //var 變數名稱 = [value,value,value]
+  var names = ["Jack","Mary","Tom"];
+  //console.log(names[0]); //Jack
+//   for(var i=0,max=names.length;i<max;i++){
+// 	  console.log(names[i]);
+//   }
+  
+  //object
+  // {屬性名稱(字串):屬性值(value)}
+  var emp = {"name":"Jack","age":29,"salary":35000};
+//   console.log(emp.name);
+//   console.log(emp.age);
+//   console.log(emp.salary);
+
+   //JSON
+   var emps = [{"name":"Jack","age":29,"salary":35000},
+               {"name":"Mary","age":35,"salary":45000},
+               {"name":"Tom","age":27,"salary":32000}];
+   
+   //emps -> array
+   //emps[0] -> object
+   //emps[0].age -> 29
+//     for(var i=0,max=emps.length;i<max;i++){
+// 	  console.log(emps[i].name);
+// 	  console.log(emps[i].age);
+// 	  console.log(emps[i].salary);
+//      }
+   
+   var data = {"emps":[{"name":"Jack","age":29,"salary":35000,"phone":["02-11112222","0911222333"]},
+                       {"name":"Mary","age":35,"salary":45000,"phone":["02-11112222","0911222333"]},
+                       {"name":"Tom","age":27,"salary":32000,"phone":["02-11112222","0911222333"]}]};
+   //data->object
+   //data.emps->array
+   //data.emps[0]->object
+   //data.emps[0].name->Jack
+//data.emps[0].phone->array
+//data.emps[0].phone[0] -> 02-11112222
+</script>
+</body>
+</html>

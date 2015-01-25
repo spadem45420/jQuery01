@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+  #div1{
+     width:1000px;
+     margin:0 auto;
+  }
+   .item{
+      width:200px;
+            height:200px;
+            overflow:hidden;
+            float:left;
+            margin:5px;
+            background-repeat:no-repeat;
+            background-size:cover;
+            box-shadow:2px 3px 5px silver;
+            opacity:0.7;
+   }
+  
+      .item:hover {
+            
+                opacity: 1;
+                box-shadow: 0px 0px 5px silver;
+            }
+
+</style>
+</head>
+<body>
+   <input type="button" value="Load" id="buttonLoad">
+   <div id="div1">
+      
+   </div>
+   
+   <script> 
+        var btnLoad = document.getElementById("buttonLoad");
+        btnLoad.addEventListener("click",load,false);
+        var xhr;
+        function load(){        	
+        	xhr = new XMLHttpRequest();
+        	xhr.addEventListener("readystatechange",callback,false);
+            var url = "Datas/data.xml";    
+        	xhr.open("get",url,true); 
+        	xhr.send();
+        }
+        function callback(){
+        	if(xhr.readyState == 4){
+        		if(xhr.status == 200){
+	        		var data = xhr.responseXML; //data就是DOM
+	        		
+	                 var myDiv = document.getElementById("div1");
+	                 //清除div中的內容	                 
+	                 while(myDiv.hasChildNodes()){
+	                	 myDiv.removeChild(myDiv.firstChild);
+	                 };
+	                
+
+					var rows =  data.getElementsByTagName("row");
+				
+					 for(var i=0,max=rows.length;i<max;i++){
+						 //file是一個XML類型的String(字串)
+						var file = rows[i].getElementsByTagName("file")[0].firstChild.nodeValue;
+						
+						 //XML String 轉成 XML DOM
+						var parser = new DOMParser();
+						var doc = parser.parseFromString(file,"text/xml");
+						//doc -> DOM
+						var title = doc.firstChild.getElementsByTagName("img")[0].getAttribute("description");
+						var imgPath = doc.firstChild.getElementsByTagName("img")[0].firstChild.nodeValue;
+						
+						//<img src="" class="item" title="">
+							
+// 						var eleImg = document.createElement("img");
+// 						eleImg.setAttribute("src",imgPath);
+// 						eleImg.setAttribute("title",title);
+// 						//eleImg.setAttribute("class","item");
+// 						eleImg.className = "item";
+						
+// 						//myDiv.innerHTML += "<img src='" + imgPath + "' title='" + title + "' class='item'>"
+						
+						
+// 						myDiv.appendChild(eleImg);
+
+
+						//<div class="item"></div>
+
+                        //建立元素節點
+                        var eleDiv = document.createElement("div");
+                        eleDiv.className = "item";
+                        eleDiv.setAttribute("title", title);
+                        eleDiv.style.backgroundImage = "url('" + imgPath + "')";
+                       
+
+
+                        myDiv.appendChild(eleDiv);
+
+						
+					 }
+					
+
+	                            	 
+        		}else{
+        			alert(xhr.status + ":" + xhr.statusText);
+                }
+        	}
+        }
+   </script>
+</body>
+</html>

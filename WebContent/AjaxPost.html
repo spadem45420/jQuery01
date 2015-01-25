@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <input type="button" value="Load" id="buttonLoad">
+   <div id="div1"></div>
+   
+   <script> 
+        var btnLoad = document.getElementById("buttonLoad");
+        btnLoad.addEventListener("click",load,false);
+        var xhr;
+        function load(){        	
+        	xhr = new XMLHttpRequest();
+        	xhr.addEventListener("readystatechange",callback,false);
+            var url = "Parameter.jsp";     //url要改
+            //Ajax 使用 post 傳送資訊
+            //要做下面三個設定
+            //1 get -> post
+        	xhr.open("post",url,true);
+            //2 設定Request header
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            //3. 傳送的資料要放到send()的方法中傳送
+        	xhr.send("name=Mary&age=25");
+        }
+        function callback(){
+        	if(xhr.readyState == 4){
+        		if(xhr.status == 200){
+	        		var data = xhr.responseText
+	                 //如何將資料顯示在網頁上會改
+	            	 var myDiv = document.getElementById("div1");
+	            	 myDiv.innerHTML = "<h2>" + data + "</h2>";	            	 
+        		}else{
+        			alert(xhr.status + ":" + xhr.statusText);
+                }
+        	}
+        }
+   </script>
+</body>
+</html>

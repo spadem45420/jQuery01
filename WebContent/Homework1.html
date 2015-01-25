@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+     <style>
+      
+        table
+        {
+            border:1px solid green;
+            width:300px;
+            border-collapse:collapse;
+        }
+        td,th
+        {
+            border:1px solid green;
+            padding:4px;
+        }
+        
+        #table1>thead>tr{
+            background-color:blue;
+        	color:white;
+        }
+        #table1>tbody>tr:nth-child(odd){
+            background-color:pink;
+        }
+        #table1>tbody>tr:nth-child(even){
+            background-color:orange;
+        }
+        
+        #table1>tbody>tr:hover{
+        	background-color:yellow;
+        }
+        .clicked{
+           background-color:purple;
+           color:white;
+        }
+        
+        .head{
+        	background-color:blue;
+        	color:white;
+        }
+        .odd{
+            background-color:pink;
+        }
+        .even{
+            background-color:orange;
+        }
+        .highlight{
+           background-color:yellow;
+        }
+       
+       
+    </style>
+   
+    
+</head>
+<body>
+    <!--
+        1. table head 的background-color:blue,字是color:white
+        2. table body 的奇數列背景色是background-color:pink
+        3. table body 的偶數列背景色是background-color:orange
+        4.滑鼠移到body的資料上,那一列tr的背景色是background-color:yellow
+        5.滑鼠離開body的資料上,變回原來的顏色
+        6.click某一列tr background-color:purple,字是color:white
+
+
+        -->
+     <table id="table1">
+         <thead>
+         <tr>
+             <th>Col1</th>
+             <th>Col2</th>
+             <th>Col3</th>
+         </tr>
+             </thead>
+         <tbody>
+        <tr>
+            <td>0A</td>
+            <td>1B</td>
+            <td>2C</td>
+        </tr>
+        <tr>
+            <td>3D</td>
+            <td>4E</td>
+            <td>5F</td>
+        </tr>
+        <tr>
+            <td>6G</td>
+            <td>7H</td>
+            <td>8I</td>
+        </tr>
+        <tr>
+            <td>0A</td>
+            <td>1B</td>
+            <td>2C</td>
+        </tr>
+        <tr>
+            <td>3D</td>
+            <td>4E</td>
+            <td>5F</td>
+        </tr>
+        <tr>
+            <td>6G</td>
+            <td>7H</td>
+            <td>8I</td>
+        </tr>
+      
+             </tbody>
+    </table>
+
+    <script src="Scripts/jquery-1.11.1.min.js"></script>
+    <script>
+	    $(function(){
+// 			$('#table1>thead>tr').addClass('head');
+// 			$('#table1>tbody>tr:nth-child(odd)').addClass('odd');
+// 			$('#table1>tbody>tr:nth-child(even)').addClass('even');
+// 			$('#table1>tbody>tr').mouseover(over).mouseout(out).click(ck);
+			$('#table1>tbody>tr').click(ck);
+			function over(){
+				$(this).addClass('highlight');
+			}
+			function out(){
+				$(this).removeClass('highlight');				
+			}
+			function ck(){
+				$('#table1>tbody>tr').removeClass('clicked');
+				$(this).addClass('clicked');
+			}
+	
+	  	  
+	    });
+    </script>
+</body>
+</html>
+

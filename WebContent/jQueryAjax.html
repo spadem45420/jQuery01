@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <input type="button" value="get" id="buttonGet">
+  <input type="button" value="post" id="buttonPost">
+  <input type="button" value="getjson" id="buttonGetJson">
+  <input type="button" value="ajax" id="buttonAjax">
+  <input type="button" value="ajaxxml" id="buttonAjaxXml">
+  <hr>
+  <div id="div1"></div>
+  
+  
+  
+<script src="Scripts/jquery-1.11.1.min.js"></script>
+<script>
+  $(function(){
+	  $('#buttonGet').on('click',function(){
+		  var url = "Parameter.jsp"; 
+	    	$.get(url,{"name":"Tom","age":20},function(data){
+	    		//data就是Serve端回傳的結果
+	    		$('#div1').html("<h2>" + data + "</h2>");
+	    	})
+	     });
+	     $('#buttonPost').on('click',function(){
+	    	 var url = "Parameter.jsp"; 
+		    	$.post(url,{"name":"Mary","age":29},function(data){
+		    		//data就是Serve端回傳的結果
+		    		$('#div1').html("<h2>" + data + "</h2>");
+		    	})
+	    	 
+	     });
+	     $('#buttonGetJson').on('click',function(){
+	    	    var url = "Datas/data.json"; 
+		    	$.getJSON(url,{},function(data){
+		    		//data就是Serve端回傳的結果
+		    		//data就是 json object
+		    		//陣列型態的json格式
+		    		//$('#div1').html("<h2>" + data + "</h2>");
+		    		//alert(data);
+		    		$.each(data,function(i,item){
+		    			console.log(item.stitle)
+		    			console.log(item.xbody)
+		    		})
+		    	})
+	    	 
+	     });
+	     
+	     
+	     $('#buttonAjax').on('click',function(){
+			  //var url = "Parameter.jsp";
+			  //get
+// 		      $.ajax({
+// 		    	  "url" : url,
+// 		    	  "data" :{"name":"Jack","age":25},
+// 		    	  "success" :function(data){
+// 		    		  $('#div1').html("<h2>" + data + "</h2>");
+// 		    	  }
+// 		      });
+			  //post
+// 			  $.ajax({
+// 		    	  "url" : url,
+// 		    	  "type" : "post",
+// 		    	  "data" :{"name":"Steven","age":31},
+// 		    	  "success" :function(data){
+// 		    		  $('#div1').html("<h2>" + data + "</h2>");
+// 		    	  }
+// 		      });
+			  var url = "Datas/data.json"; 
+			  //json
+			  $.ajax({
+		    	  "url" : url,
+		    	  "type" : "get",
+		    	  "data" :{},
+		    	  "dataType":"json",
+		    	  "success" :function(data){
+		    		  $.each(data,function(i,item){			    			
+			    			$('#div1').append("<h2>" + item.stitle + "</h2>");
+			    		})
+		    		  
+		    	  }
+		      });
+		 });
+	     
+	     
+	     $('#buttonAjaxXml').on('click',function(){
+	    	  var url = "Datas/data.xml"; 
+			  //json
+			  $.ajax({
+		    	  "url" : url,
+		    	  "type" : "get",
+		    	  "data" :{},
+		    	  "dataType":"xml",
+		    	  "success" :function(data){
+		    		  //data -> xml dom
+// 		    		  $(data).find("stitle").each(function(){
+// 		    			  $('#div1').append("<h2>" + $(this).text() + "</h2>");
+// 		    		  });
+		    		 
+		    		    $(data).find("row").each(function(){
+		    		    	var stitle = $(this).children("stitle").text();
+		    		    	var xbody = $(this).children("xbody").text();
+		    			  $('#div1').append("<h2>" + stitle + "</h2>") 
+		    			            .append("<p>" + xbody + "</p>");
+		    		  });
+		    	  }
+		      });
+	     })
+
+	  
+  });
+</script>
+</body>
+</html>

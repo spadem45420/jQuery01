@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <input type="button" value="Load" id="buttonLoad">
+   <div id="div1"></div>
+   
+   <input type="text"><br>
+   <input type="text"><br>
+   <input type="text"><br>
+   <input type="text"><br>
+   <input type="text"><br>
+   <input type="text"><br>
+   <script> 
+        var btnLoad = document.getElementById("buttonLoad");
+        //btnLoad.onclick = load;
+        btnLoad.addEventListener("click",load,false);//false表示Event Bubbling, true表示 Event Capturing
+        
+        function load(){
+        	//開始寫Ajax程式
+        	//alert("Hello Ajax!!");
+        	//console.log("Hello Ajax!!");
+        	
+        	//步驟一建立Ajax物件
+        	var xhr = new XMLHttpRequest();
+        	
+        	//步驟二對Server端發出要求
+        	xhr.open("get","Index.jsp",false); //false 表示同步
+        	xhr.send();
+        	
+        	//步驟三接收Server端回應的資料
+        	var data = xhr.responseText
+        	//alert(data);
+        	
+        	
+        	//將資料顯示在網頁上
+        	 var myDiv = document.getElementById("div1");
+        	 myDiv.innerHTML = "<h2>" + data + "</h2>";
+        	
+        	
+        	
+        }
+
+   </script>
+</body>
+</html>

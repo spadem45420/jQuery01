@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .s1
+        {
+            color:silver;
+        }
+    </style>
+   
+</head>
+<body>
+   <!-- 操作方式請參考Yahoo註冊 -->
+    <input type="text" title="Name" placeholder="姓名" /><br />
+    <input type="text" title="Email" placeholder="電子郵件"/><br />
+    <input type="text" title="Age" placeholder="年紀" /> <br />
+    
+    
+    <script src="Scripts/jquery-1.11.1.min.js"></script> 
+    <script>
+	  $(function(){
+		  var input = document.createElement("input");
+		  if(!('placeholder' in input)){
+		      $(':text').each(function(){
+		    	  var t = $(this).attr('title');
+		    	  $(this).val(t).addClass('s1');
+		      }).focus(function(){
+		    	  if($(this).val()==$(this).attr('title')){
+		    	    $(this).val("").removeClass('s1');
+		    	  }
+		      }).blur(function(){
+		    	  if($(this).val() == ""){
+		    	     var t = $(this).attr('title');
+		    	     $(this).val(t).addClass('s1');
+		    	  }
+		      });	
+		  }
+		  
+	  });
+   </script>
+</body>
+</html>
+

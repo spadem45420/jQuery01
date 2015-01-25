@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+  #img1{width:470px;
+        opacity:0.3}
+        
+  #dog{
+     position:absolute;
+     top:580px;
+     left:1200px;
+  }
+</style>
+</head>
+<body>
+  <input type="button" value="顯示隱藏" id="buttonShowHide">
+  <input type="button" value="滑動效果" id="buttonSlide">
+  <input type="button" value="淡入淡出" id="buttonFade">
+  <hr>
+  <img src="Images/U1.jpg" id="img1">
+  <img src="Images/dog.gif" id="dog">
+  
+  
+  
+<script src="Scripts/jquery-1.11.1.min.js"></script>
+<script src="Scripts/jquery-effects-ui.min.js"></script>
+<script>
+  $(function(){
+	  $('#img1').hover(function(){
+		  $(this).fadeTo(1000,1);		  
+	  },function(){
+		  $(this).fadeTo(1000,0.3);});
+	  
+	  $('#buttonShowHide').on('click',function(){
+// 	    	$('#img1').hide(1500,function(){
+// 	    		$('#img1').show(1500);
+// 	    	});
+			$('#img1').toggle('explode',1500)
+	     });
+	     $('#buttonSlide').on('click',function(){
+// 	    	 $('#img1').slideUp(1500,function(){
+// 		    		$('#img1').slideDown(1500);
+// 		    	});
+	    	  $('#img1').slideToggle('explode',1500);
+	     });
+	     $('#buttonFade').on('click',function(){
+// 	    	 $('#img1').fadeOut(1500,function(){
+// 		    		$('#img1').fadeIn(1500);
+// 		    	});
+	    	 $('#img1').fadeToggle(1500);
+	     });
+	     
+	     $('#dog').on('click',function(){
+	    	 $(this).animate({"left":"50px",
+	    		              "width":"80px",
+	    		              "top":"50px",
+	    		              "opacity":"0.5"},5000,'easeInBounce');
+	     })
+	     
+
+	  
+  });
+</script>
+</body>
+</html>

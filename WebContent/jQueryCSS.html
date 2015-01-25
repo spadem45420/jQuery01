@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+   .s1{
+        color:purple;
+  	    background-color:orange;
+	    width:400px;
+		text-align:center;
+		border:1px solid red;
+   }
+   
+   .s2{
+        color:green;
+  	    background-color:yellow;
+	    width:400px;
+		text-align:center;
+		border:3px double orange;
+   
+   }
+   
+   
+</style>
+</head>
+<body>
+  <input type="button" value="Toggle" id="buttonToggle">
+  <h1 id="myH">write less, do more</h1>
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  
+  
+  
+  
+<script src="Scripts/jquery-1.11.1.min.js"></script>
+<script src="Scripts/jquery-effects-ui.min.js"></script>
+<script>
+  $(function(){
+
+
+//     $('h1').addClass('s1')
+//            .mouseover(over)
+//            .mouseout(out);
+//       $('h1').addClass('s1')
+//            .mouseenter(over)
+//            .mouseleave(out);
+
+ 	$('h1').addClass('s1',1000).hover(over,out);
+     
+    function over(){
+    	 //$(this).removeClass('s1',1000).addClass('s2',1000);
+    	$(this).switchClass('s1','s2',1000)
+     }
+     function out(){
+    	// $(this).removeClass('s2',1000).addClass('s1',1000);
+     	$(this).switchClass('s2','s1',1000)
+     }
+     
+     $('#buttonToggle').click(function(){
+//     	 if($('#myH').hasClass('s2')){
+//     		 $('#myH').removeClass('s2');
+//     	 }else{
+//     		 $('#myH').addClass('s2');
+//     	 }
+			$('#myH').toggleClass('s2',1000)
+     });
+     
+
+	  
+  });
+</script>
+</body>
+</html>

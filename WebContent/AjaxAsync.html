@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+  #img1{
+     display:none;
+  }
+</style>
+</head>
+<body>
+   <input type="button" value="Load" id="buttonLoad"><img src="Images/ajax-loader.gif" id="img1">
+   <div id="div1"></div>
+   <input type="text"><br>
+   <input type="text"><br>
+   <input type="text"><br>
+   <input type="text"><br>
+   <input type="text"><br>
+   <input type="text"><br>
+   <script> 
+        var btnLoad = document.getElementById("buttonLoad");
+        //btnLoad.onclick = load;
+        btnLoad.addEventListener("click",load,false);//false表示Event Bubbling, true表示 Event Capturing
+        var xhr;
+        function load(){
+        	//開始寫Ajax程式
+        	//alert("Hello Ajax!!");
+        	//console.log("Hello Ajax!!");
+        	
+        	//步驟一建立Ajax物件
+        	xhr = new XMLHttpRequest();
+        	
+        	//步驟二對Server端發出要求
+        	//readystatechange事件什麼時候會發生?
+            //readyState屬性值改變的時候就會觸發readystatechange事件
+            //readyState = 0 -> 1 -> 2 -> 3 -> 4
+        	xhr.addEventListener("readystatechange",callback,false);
+            var url = "Index.jsp";  //FirstServlet
+        	xhr.open("get",url,true); //true表示非同步
+        	xhr.send();
+        	
+        	
+        	
+        }
+        //這個function會被執行四次
+        function callback(){
+        	//console.log("readyState : " + xhr.readyState);
+        	
+        	if(xhr.readyState == 1){
+        		document.getElementById("img1").style.display = "inline";
+        	}
+        	//readyState == 4表示資料已經回傳到Client端了
+        	else if(xhr.readyState == 4){
+        		document.getElementById("img1").style.display = "none";
+        		//status == 200表示Server端程式執行沒有錯誤
+        		//我們就可以接受Server端回應的資料
+        		if(xhr.status == 200){
+	        		//步驟三接收Server端回應的資料
+	            	var data = xhr.responseText
+	            	//alert(data);
+	            	
+	            	
+	            	//將資料顯示在網頁上
+	            	 var myDiv = document.getElementById("div1");
+	            	 myDiv.innerHTML = "<h2>" + data + "</h2>";
+	            	 
+	            	 
+	            	 
+        		}else{
+        			alert(xhr.status + ":" + xhr.statusText);
+        			
+        		}
+        	}
+        }
+
+   </script>
+</body>
+</html>

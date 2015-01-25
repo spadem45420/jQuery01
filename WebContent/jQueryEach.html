@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <h1>write less, do more</h1>
+  
+  <input type="text" title="Name" /><br />
+    <input type="text" title="Email"/><br />
+    <input type="text" title="Age" /> <br />
+  
+  
+<script src="Scripts/jquery-1.11.1.min.js"></script>
+<script>
+  $(function(){
+     //array
+	 var names = ["Tom","Jack","Mary"];
+	 //function的第一個參數表示陣列的索引值0,1,2...
+     //function的第二個參數表示陣列的值 Tom,Jack,Mary...
+//      $.each(names,function(i,v){
+//     	 console.log(i);
+//     	 console.log(v);
+// 		//alert(this);
+//      })
+     
+     
+     
+     //obj
+     var obj = {"Item5":"e","Item6":"f"};
+     //function的第一個參數表示物件的屬性名稱 Item5,Item6
+     //function的第二個參數表示物件的屬性值 e,f
+     
+//      $.each(obj,function(n,v){
+//     	 console.log(n);
+//     	 console.log(v);
+//      })
+     
+//      var t = $(':text[title="Name"]').attr("title");
+//      $(':text[title="Name"]').val(t);
+    
+     $(':text').each(function(){
+    	 var t = $(this).attr("title");
+    	 $(this).val(t);
+     });
+     
+     //JSON
+     var emps = [{"name":"Jack","age":29,"salary":35000},
+                 {"name":"Mary","age":35,"salary":45000},
+                 {"name":"Tom","age":27,"salary":32000}];
+     var data = {"emps":[{"name":"Jack","age":29,"salary":35000,"phone":["02-11112222","0911222333"]},
+                         {"name":"Mary","age":35,"salary":45000,"phone":["02-22223333","0911444555","0932333444"]},
+                         {"name":"Tom","age":27,"salary":32000,"phone":["02-44445555"]}]};
+  
+//      $.each(emps,function(i,employee){
+//     	 console.log(employee.name);
+//      })
+
+		$.each(data,function(n,v){
+			$.each(v,function(i,employee){
+// 				console.log(employee.phone[0]);
+// 				console.log(employee.phone[1]);
+				$.each(employee.phone,function(i,v){
+					console.log(v);
+				})
+			})
+		})
+     
+  
+  });
+</script>
+</body>
+</html>

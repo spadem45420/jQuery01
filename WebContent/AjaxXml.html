@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <input type="button" value="Load" id="buttonLoad">
+   <div id="div1">
+<!--       <h2>title</h2> -->
+<!--       <p>description</p> -->
+   </div>
+   
+   <script> 
+        var btnLoad = document.getElementById("buttonLoad");
+        btnLoad.addEventListener("click",load,false);
+        var xhr;
+        function load(){        	
+        	xhr = new XMLHttpRequest();
+        	xhr.addEventListener("readystatechange",callback,false);
+            var url = "Datas/data.xml";     //url要改
+        	xhr.open("get",url,true); 
+        	xhr.send();
+        }
+        function callback(){
+        	if(xhr.readyState == 4){
+        		if(xhr.status == 200){
+	        		var data = xhr.responseXML;//使用responseXML接收Serve都回應的XML
+	        		//data就是DOM
+	        		
+	                 //如何將資料顯示在網頁上會改
+	                 //var titles = data.getElementsByTagName("stitle");
+	                 var myDiv = document.getElementById("div1");
+	                 //清除div中的內容
+	                 //myDiv.parentNode.removeChild(myDiv);
+	                 while(myDiv.hasChildNodes()){
+	                	 myDiv.removeChild(myDiv.firstChild);
+	                 };
+	                 //console.log(myDiv.hasChildNodes());
+// 	        		 for(var i=0,max=titles.length;i<max;i++){
+// 	        			 //console.log(titles[i].firstChild.nodeValue);
+// 	        			 var title = titles[i].firstChild.nodeValue;
+	        			
+// 	        			 //.innerHTML += "<h2>" + title + "</h2>";	
+	        			 
+// 	        			 //使用DOM將資料顯示在網頁上
+// 	        			 //建立文字節點
+// 	        			 var txt = document.createTextNode(title);
+// 	        			 //建立元素節點
+// 	        			 var eleH2 = document.createElement("h2");
+// 	        			 //將文字節點加到元素節點之下
+// 	        			 eleH2.appendChild(txt);     			 
+// 	        			 myDiv.appendChild(eleH2);
+// 	        		 }
+
+
+					var rows =  data.getElementsByTagName("row");
+					//console.log(rows[4].firstChild.nodeValue);
+// 					console.log(rows[4].nodeType);  //1
+// 					console.log(rows[4].nodeName);   //row
+// 					console.log(rows[4].nodeValue);  //null
+
+//                     console.log(rows[4].firstChild.nodeType);  //3
+// 					console.log(rows[4].firstChild.nodeName);   //#text
+// 					console.log(rows[4].firstChild.nodeValue);  //
+
+                    console.log(rows[4].childNodes[1].nodeType);  //1
+					console.log(rows[4].childNodes[1].nodeName);   //rownumber
+					console.log(rows[4].childNodes[1].nodeValue);  //null
+					console.log(rows[4].childNodes[1].firstChild.nodeValue); //28 
+					console.log(rows[4].childNodes[7].firstChild.nodeValue); //歷史建築
+					console.log(rows[4].getElementsByTagName("stitle")[0].firstChild.nodeValue); //臺北忠烈祠  
+					console.log(rows[4].getElementsByTagName("xbody")[0].firstChild.nodeValue);
+					 for(var i=0,max=rows.length;i<max;i++){
+						var title = rows[i].getElementsByTagName("stitle")[0].firstChild.nodeValue;
+						var body = rows[i].getElementsByTagName("xbody")[0].firstChild.nodeValue
+						
+						//使用DOM將資料顯示在網頁上
+//	        			 //建立文字節點
+	        			 var txt = document.createTextNode(title);
+						var txtP = document.createTextNode(body);
+//	        			 //建立元素節點
+	        			 var eleH2 = document.createElement("h2");
+	        			 var eleP = document.createElement("p");
+//	        			 //將文字節點加到元素節點之下
+	        			 eleH2.appendChild(txt);  
+	        			 eleP.appendChild(txtP);  
+
+	        			 myDiv.appendChild(eleH2);
+	        			 myDiv.appendChild(eleP);
+						
+						
+						
+					 }
+					
+
+	                            	 
+        		}else{
+        			alert(xhr.status + ":" + xhr.statusText);
+                }
+        	}
+        }
+   </script>
+</body>
+</html>

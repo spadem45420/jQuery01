@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+</style>
+</head>
+<body>
+<a href="jQueryFirst.html">jQueryFirst</a> | 
+<a href="jQuerySelectors.html">jQuerySelectors</a> |
+<a href="http://tw.yahoo.com">YAHOO</a> | 
+<a href="http://www.facebook.com">Facebook</a><hr>
+  <input type="text" id="userName"><input type="button" value="click" id="buttonClick"><span id="span1"></span>
+  <hr>
+  <select id="select1">
+     <option value="a">Item1</option>
+     <option value="b">Item2</option>
+     <option value="c">Item3</option>
+     <option value="d">Item4</option>
+  </select>
+  <span id="span2"></span>
+
+<h1 id="myH">write less do more</h1>
+  <hr>
+  <input type="button" value="check" id="buttonToggle"> <br>
+  <input type="checkbox" id="checkToggle">ToggleAll<br>
+  <input type="checkbox" value="a1" name="a">A1
+  <input type="checkbox" value="a2" name="a">A2
+  <input type="checkbox" value="a3" name="a">A3
+  <input type="checkbox" value="a4" name="a">A4
+  <input type="checkbox" value="a5" name="a">A5
+  <input type="checkbox" value="a6" name="a">A6
+  <br>
+  <input type="button" value="送出" id="buttonGet">
+  
+<script src="Scripts/jquery-1.11.1.min.js"></script>
+<script>
+  $(function(){
+	  $('#userName').val("guest"); //寫入
+     $('#buttonClick').click(function(){
+    	 var name = $('#userName').val();  //讀取
+    	 //$('#span1').text("Hello " + name); //寫入  innerText,textContent
+    	 
+    	 $('#span1').html("<h2>Hello " + name + "</h2>"); //寫入 innerHTML
+    	 
+    	 console.log($('#span1').text());  //讀取
+    	 console.log($('#span1').html());  //讀取
+    	 
+     });
+	  
+	  $('#select1').change(function(){
+		  var v = $(this).val();  //$('#select1>:selected').val()
+		  var t = $('#select1>:selected').text();
+		  var i = $('#select1>:selected').index();
+		  $('#span2').html("<h2>" + i + "," + v + "," + t + "</h2>");
+		 // console.log($(this).text());
+		 // console.log($(this).html());
+// 		  console.log($('#select1>:selected').text());
+// 		  console.log($('#select1>:selected').val());
+// 		  console.log($('#select1>:selected').index());
+	  });
+	  
+	  
+	  //屬性處理
+	  $('a[href ^= "http"]').attr('target','_blank');
+
+// 	  $('#myH').prepend("<u>aaaa</u>")
+// 	           .append("bbbb")
+// 	           .before("zzzz")
+// 	           .after("<u>yyyy</u>");
+
+//$() -> jQuery Object，物件產生後才能使用jQuery所提供的方法
+//$(this)
+      //$("<u>aaaa</u>").prependTo("#myH");
+      //$("<i>bbbb</i>").appendTo("#myH");
+      //$('#myH').empty();  //清除節點內容
+      $('#myH').remove();   //刪除節點
+	  
+      
+      
+//       $(':checkbox').each(function(){
+//     	  console.log($(this).attr("checked"));
+//       });
+      
+//       console.log($(':checkbox:eq(0)').attr("checked"));
+//       console.log($(':checkbox:eq(1)').attr("checked"));
+//       console.log($(':checkbox:eq(2)').attr("checked"));
+//       console.log($(':checkbox:eq(3)').attr("checked"));
+//       console.log($(':checkbox:eq(4)').attr("checked"));
+//       console.log($(':checkbox:eq(5)').attr("checked"));
+      
+      $('#buttonToggle').click(function(){
+    	  if($(this).val() == "check"){
+    	   // $(':checkbox').attr('checked','checked');
+    	    $(':checkbox').prop('checked',true);
+    	    $(this).val("uncheck")
+    	  }else{
+//     		  $(':checkbox').removeAttr('checked'); 
+    		  $(':checkbox').prop('checked',false);
+      	    $(this).val("check");
+    	  }
+      });
+      
+      $('#checkToggle').change(function(){
+    	  var b = $(this).prop("checked");
+    	  $(':checkbox').prop('checked',b);
+      });
+  });
+</script>
+</body>
+</html>

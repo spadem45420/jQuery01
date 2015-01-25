@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  <h1>write less, do more</h1>
+  
+  
+  
+  
+<script src="Scripts/jquery-1.11.1.min.js"></script>
+<script>
+  $(function(){
+     //$('h1').css('color','purple');
+     //$('h1').mouseover(function(){});
+     //$('h1').mouseover(over);
+     //$('h1').mouseout(out);
+//      $('h1').mouseout(function(){
+//     	 $(this).css('color','yellow');	 
+//      });
+
+    //$('h1').css('color','purple').mouseover(over).mouseout(out);
+    
+    //$('h1').css('color','purple').css('background-color','orange').css('width','400px')
+    
+   // var s1 = {'屬性名稱':'屬性值','屬性名稱':'屬性值'};
+    var s1 = {'color':'purple',
+  		      'background-color':'orange',
+		      'width':'400px',
+		      'text-align':'center',
+		      'border':'1px solid red'};
+    
+    var s2 = {'color':'green',
+    		  'background-color':'yellow',
+  		      'width':'400px',
+  		      'text-align':'center',
+  		      'border':'3px double orange'};
+    
+//     $('h1').css('color','purple')
+//            .mouseover(over)
+//            .mouseout(out);
+
+    $('h1').css(s1)
+           .mouseover(over)
+           .mouseout(out);
+     
+     
+    function over(){
+    	 //this表示觸發事件的物件
+    	 //$(this).css('color','green');
+    	 $(this).css(s2);
+     }
+     function out(){
+    	 //$(this).css('color','purple');
+    	 $(this).css(s1);
+     }
+     
+
+	  
+  });
+</script>
+</body>
+</html>

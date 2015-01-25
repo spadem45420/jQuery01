@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#table1 {width:300px;
+         border:1px green solid;
+         border-collapse:collapse;}
+         
+
+#table1 td {border:1px green solid;
+         padding:5px;}
+</style>
+</head>
+<body>
+  <h1>jQuery Selectors</h1>
+  <h2>Attribute Selectors</h2>
+  <input type="text" value="請輸入"><br>
+  <input type="text" value="請輸入"><br>
+  <input type="text" value="請輸入"><br>
+  <input type="button" value="送出"><br>
+  <hr>
+  <h2>Basic Filter Selectors</h2>
+  <table id="table1">
+    <tr>
+       <td>0A</td>
+       <td>1B</td>
+       <td>2C</td>
+    </tr>
+    <tr>
+       <td>3D</td>
+       <td>4E</td>
+       <td>5F</td>
+    </tr>
+    <tr>
+       <td>6G</td>
+       <td>7H</td>
+       <td>8I</td>
+    </tr>
+  </table>
+   
+<script src="Scripts/jquery-1.11.1.min.js"></script>
+<script>
+  $(function(){
+	  //attribte selectors
+    $('input[type="text"]').css('color','silver'); 
+	  
+	  //basic filter selectors
+	  //與索引值有關
+	//$('#table1 td:eq(2)').css('background-color','orange');//C
+// 	$('#table1 td:lt(3)').css('background-color','orange');//A,B,C
+// 	$('#table1 td:gt(5)').css('background-color','yellow');//G,H,I
+//     $('#table1 td:even').css('background-color','orange');//A,C,E,G,I
+// 	$('#table1 td:odd').css('background-color','yellow');//B,D,F,H
+// 	$(':header').css('text-decoration','underline');  
+	//$('#table1 td:first').css('background-color','orange');//A
+
+	//child filter selectors
+	//2 -> 表示第二筆資料
+	//不同的父元素會產生出不同的集合
+	//$('#table1 td:nth-child(2)').css('background-color','orange');//B,E,H
+	$('#table1 td:first-child').css('background-color','orange');//A,D,G
+	$('#table1 td:last-child').css('background-color','yellow');//C,F,I
+  });
+</script>
+</body>
+</html>

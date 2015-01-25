@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="Css/jquery-ui.min.css">
+</head>
+<body>
+ 
+  
+  <div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags" type="text">
+</div>
+  
+  
+<script src="Scripts/jquery-1.11.1.min.js"></script>
+<script src="Scripts/jquery-ui.min.js"></script>
+<script>
+  $(function(){
+
+	                     $( "#tags" ).autocomplete({
+	                       source: "JsonSimpleDemo"
+	                     });
+
+	  
+  });
+</script>
+</body>
+</html>

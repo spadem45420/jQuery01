@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <input type="button" value="Load" id="buttonLoad">
+   <div id="div1"></div>
+   <script src="Scripts/myXMLHttp.js"></script>
+   <script> 
+        var btnLoad = document.getElementById("buttonLoad");
+        btnLoad.addEventListener("click",load,false);
+        var xhr;
+        function load(){        	
+        	xhr = initXMLHttpRequest();
+        	if(xhr!=null){
+	        	xhr.addEventListener("readystatechange",callback,false);
+	            var url = "Index.jsp";     //url要改
+	        	xhr.open("get",url,true); 
+	        	xhr.send();
+        	}else{
+        		alert("您的瀏覽器不支援Ajax功能!!");
+        	}
+        }
+        function callback(){
+        	if(xhr.readyState == 4){
+        		if(xhr.status == 200){
+	        		var data = xhr.responseText
+	                 //如何將資料顯示在網頁上會改
+	            	 var myDiv = document.getElementById("div1");
+	            	 myDiv.innerHTML = "<h2>" + data + "</h2>";	            	 
+        		}else{
+        			alert(xhr.status + ":" + xhr.statusText);
+                }
+        	}
+        }
+   </script>
+</body>
+</html>

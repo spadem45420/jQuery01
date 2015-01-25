@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <input type="button" value="Load" id="buttonLoad">
+   <input type="button" value="Stop" id="buttonStop">
+   <div id="div1"></div>
+   
+   <script> 
+   var btnStop = document.getElementById("buttonStop");
+   btnStop.addEventListener("click",function(){
+	   xhr.abort();
+   },false);
+        var btnLoad = document.getElementById("buttonLoad");
+        btnLoad.addEventListener("click",load,false);
+        var xhr;
+        function load(){        	
+        	xhr = new XMLHttpRequest();
+        	
+        	xhr.addEventListener("readystatechange",function(){
+        		console.log("readystatechange : " + xhr.readyState);
+        	},false);
+        	
+        	xhr.addEventListener("loadstart",function(){
+        		console.log("loadstart");
+        	},false);
+        	
+        	xhr.addEventListener("loadend",function(){
+        		console.log("loadend");
+        	},false);
+        	
+        	xhr.addEventListener("timeout",function(){
+        		 var myDiv = document.getElementById("div1");
+            	 myDiv.innerHTML = "<h2>timeout</h2>";	  
+        	},false);
+        	xhr.addEventListener("abort",function(){
+       		 var myDiv = document.getElementById("div1");
+           	 myDiv.innerHTML = "<h2>abort</h2>";	  
+       	},false);
+        	
+        	xhr.addEventListener("load",function(){
+        		console.log("load");
+        		if(xhr.status == 200){
+	        		var data = xhr.responseText
+	                 //如何將資料顯示在網頁上會改
+	            	 var myDiv = document.getElementById("div1");
+	            	 myDiv.innerHTML = "<h2>" + data + "</h2>";	            	 
+        		}else{
+        			alert(xhr.status + ":" + xhr.statusText);
+                }   		
+        	},false);
+        	
+            var url = "Index.jsp";     //url要改
+        	xhr.open("get",url,true);
+            xhr.timeout = 5000;
+        	xhr.send();
+        }
+   </script>
+</body>
+</html>
